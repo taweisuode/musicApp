@@ -59,6 +59,7 @@ public class SongListViewAdapter extends ArrayAdapter<ListItem> {
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
             convertView = inflater.inflate(resource, parent, false);
             // 初始化组件
+            viewHolder.songKey = (TextView) convertView.findViewById(R.id.song_key);
             viewHolder.title = (TextView) convertView.findViewById(R.id.song_title);
             viewHolder.songAuthor = (TextView) convertView.findViewById(R.id.song_author);
             viewHolder.convertView = convertView;
@@ -70,6 +71,7 @@ public class SongListViewAdapter extends ArrayAdapter<ListItem> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         final ListItem item = listData.get(position);
+        viewHolder.songKey.setText(String.valueOf(position+1));
         viewHolder.title.setText(item.getTitle());
         StringBuffer sb = new StringBuffer();
         sb.append(item.getAuthor()).append("-").append(item.getAlbumTitle());
@@ -88,6 +90,7 @@ public class SongListViewAdapter extends ArrayAdapter<ListItem> {
         return convertView;
     }
     class ViewHolder {
+        public TextView songKey;
         public TextView title;
         public TextView songAuthor;
         public View convertView;

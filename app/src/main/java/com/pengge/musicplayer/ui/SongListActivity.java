@@ -12,19 +12,16 @@ import android.util.Base64;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
+
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.pengge.musicplayer.R;
 import com.pengge.musicplayer.diyView.ListItem;
 import com.pengge.musicplayer.diyView.SongListViewAdapter;
-import com.pengge.musicplayer.tools.FastBlurUtil;
 import com.pengge.musicplayer.tools.ImageLoaderManager;
 import com.pengge.musicplayer.tools.ShowLog;
 import com.pengge.musicplayer.ui.presenter.SongListPresenterAchi;
@@ -35,7 +32,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.regex.Matcher;
 
 public class SongListActivity extends AppCompatActivity implements SongListView{
@@ -43,7 +39,6 @@ public class SongListActivity extends AppCompatActivity implements SongListView{
     private TextView songTitle;
     private ListView songListView;
     private RelativeLayout songListInfo;
-    private FrameLayout songListBar;
     public SongListPresenterAchi songListPresenterAchi;
     private  String playListId;
     private ImageLoaderManager imageLoaderManager = null;
@@ -67,7 +62,6 @@ public class SongListActivity extends AppCompatActivity implements SongListView{
         songTitle     = (TextView) findViewById(R.id.song_title);
         songListView   = (ListView) findViewById(R.id.song_list_listview);
         songListInfo = (RelativeLayout) findViewById(R.id.song_list_info);
-        songListBar = (FrameLayout) findViewById(R.id.song_list_bar);
 
     }
     //绑定presenterAchi
@@ -109,15 +103,11 @@ public class SongListActivity extends AppCompatActivity implements SongListView{
             songTitle.setText(jsonData.getString("title"));
 
             //背景图片模糊化
-            Bitmap bitmap = null;
             byte[] bitmapArray = Base64.decode(String.valueOf(jsonData.get("blur_background")),Base64.CRLF);
-            bitmap =
-                    BitmapFactory.decodeByteArray(bitmapArray, 0,
-                            bitmapArray.length);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(bitmapArray, 0, bitmapArray.length);
             ShowLog.e(bitmap.toString());
             Drawable drawable = new BitmapDrawable(getResources(), bitmap);
             songListInfo.setBackground(drawable);
-            //songListBar.setBackground(drawable);
             JSONArray jsonArray = jsonData.getJSONArray("list");
             ArrayList<ListItem> dataList = new ArrayList<>();
             if(jsonArray.length() > 0) {

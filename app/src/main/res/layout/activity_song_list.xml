@@ -78,8 +78,8 @@
             android:drawableLeft="@drawable/play_all_icon"
             android:text="播放全部"
             android:textSize="18sp"
-            android:drawablePadding="20dp"
-            android:layout_marginLeft="@dimen/songlist_play_marginLeft"
+            android:drawablePadding="10dp"
+            android:layout_marginLeft="@dimen/common_recommend_margin"
             android:gravity="center"/>
         <TextView
             android:layout_width="wrap_content"
@@ -94,8 +94,9 @@
             android:gravity="center"/>
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.5dp"
             android:layout_marginTop="40dp"
+            android:layout_marginLeft="50dp"
             android:background="@color/play_all_line"/>
     </FrameLayout>
     <ListView
@@ -103,6 +104,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/play_all_frame"
+        android:divider="@null"
         android:layout_marginBottom="@dimen/common_bottom_height">
     </ListView>
     <FrameLayout

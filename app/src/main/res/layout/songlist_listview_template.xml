@@ -11,12 +11,23 @@
         android:layout_marginTop="1dp"
         android:background="@color/white">
         <TextView
-            android:id="@+id/song_title"
+            android:id="@+id/song_key"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginTop="@dimen/common_recommend_margin"
             android:layout_marginLeft="@dimen/songlist_play_marginLeft"
-            android:text="不想长大"
+            android:text="1"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/book_agreement"/>
+        <TextView
+            android:id="@+id/song_title"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="@dimen/common_recommend_margin"
+            android:layout_marginLeft="50dp"
+            android:text="你好得到的"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/fontColor"/>
@@ -24,12 +35,15 @@
             android:id="@+id/song_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/songlist_play_marginLeft"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="40dp"
-            android:text="SHE"
+            android:text="玩儿玩儿-分手的分手地方"
+            android:maxLines="1"
+            android:maxEms="20"
+            android:ellipsize="end"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:textColor="@color/fontColor"/>
+            android:textColor="@color/book_agreement"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,9 +52,9 @@
             android:layout_marginRight="20dp"/>
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="0.5dp"
             android:layout_marginTop="65dp"
-            android:layout_marginLeft="@dimen/songlist_play_marginLeft"
+            android:layout_marginLeft="50dp"
             android:background="@color/play_all_line"/>
     </FrameLayout>
 </LinearLayout>

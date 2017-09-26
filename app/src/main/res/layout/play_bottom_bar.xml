@@ -16,6 +16,15 @@
         android:layout_gravity="center_vertical"
         android:layout_marginBottom="10dp">
         <ImageView
+            android:id="@+id/play_random"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            android:src="@drawable/random"
+            android:layout_gravity="center"/>
+        <ImageView
             android:id="@+id/play_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,6 +44,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/down" />
+        <ImageView
+            android:id="@+id/play_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/play_list"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            android:layout_gravity="center"/>
     </LinearLayout>
 
     <LinearLayout
