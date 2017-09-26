@@ -34,7 +34,6 @@ public class RecommendMainFragment extends Fragment implements RecommendMainList
     private ViewPager viewPager;
     private ImageView dot_1,dot_2,dot_3,dot_4,dot_5,dot_6;
     private GridView gridView;
-    private ImageLoaderManager imageLoaderManager = null;
 
     public RecommendMainPresenterAchi recommendMainPresenterAchi;
 
@@ -186,13 +185,11 @@ public class RecommendMainFragment extends Fragment implements RecommendMainList
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        ShowLog.e(songList.toString());
         MainGridViewAdapter mainGridViewAdapter = new MainGridViewAdapter(getContext(),R.layout.recommend_gridview_template,songList);
         gridView.setAdapter(mainGridViewAdapter);
     }
 
     @Override
     public void showToast(String desc) {
-
     }
 }

@@ -5,62 +5,110 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.pengge.musicplayer.ui.SongListActivity">
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/search_bar_height"
-        android:background="@color/red"
-        android:focusable="true"
-        android:focusableInTouchMode="true">
-        <ImageButton
-            android:id="@+id/iv_nav_back"
-            android:layout_width="20dp"
-            android:layout_height="32dp"
-            android:layout_gravity="left|center_vertical"
-            android:src="@mipmap/back"
-            android:onClick="skipBackView"
-            android:background="@null"/>
-        <TextView
-            android:id="@+id/search"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="80dp"
-            android:layout_marginRight="80dp"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:text="歌单"
-            android:textSize="20sp"
-            android:textColor="@color/white" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/main_right_music"
-            android:layout_gravity="right|center"
-            android:layout_marginRight="10dp"/>
-    </FrameLayout>
     <RelativeLayout
         android:id="@+id/song_list_info"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/song_list_info_height"
-        android:layout_marginTop="@dimen/search_bar_height">
-        <ImageView
-            android:id="@+id/song_list_image"
-            android:layout_width="@dimen/recommend_grid_view_height"
-            android:layout_height="@dimen/recommend_grid_view_height"/>
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:id="@+id/song_list_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/search_bar_height"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+            <ImageButton
+                android:id="@+id/iv_nav_back"
+                android:layout_width="20dp"
+                android:layout_height="32dp"
+                android:layout_gravity="left|center_vertical"
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/back"
+                android:onClick="skipBackView"
+                android:background="@null"/>
+            <TextView
+                android:id="@+id/search"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="80dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="歌单"
+                android:textSize="20sp"
+                android:textColor="@color/white" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/main_right_music"
+                android:layout_gravity="right|center"
+                android:layout_marginRight="10dp"/>
+        </FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/song_list_info_height"
+            android:layout_marginTop="@dimen/search_bar_height">
+            <ImageView
+                android:id="@+id/song_list_image"
+                android:layout_width="@dimen/songlist_image_height"
+                android:layout_height="@dimen/songlist_image_width"
+                android:scaleType="fitXY"
+                android:layout_margin="@dimen/common_recommend_margin"/>
+            <TextView
+                android:id="@+id/song_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/song_list_image"
+                android:text="摇滚精灵艾薇儿"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"/>
+        </RelativeLayout>
+    </RelativeLayout>
+    <FrameLayout
+        android:id="@+id/play_all_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/song_list_info">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/song_list_image"
-            android:textSize="16sp"
-            android:textColor="@color/white"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:drawableLeft="@drawable/play_all_icon"
+            android:text="播放全部"
+            android:textSize="18sp"
+            android:drawablePadding="20dp"
+            android:layout_marginLeft="@dimen/songlist_play_marginLeft"
             android:gravity="center"/>
-    </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="多选"
+            android:layout_marginRight="20dp"
+            android:textSize="18sp"
+            android:layout_marginLeft="20dp"
+            android:drawableLeft="@drawable/multi_select_icon"
+            android:drawablePadding="5dp"
+            android:gravity="center"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="40dp"
+            android:background="@color/play_all_line"/>
+    </FrameLayout>
     <ListView
         android:id="@+id/song_list_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/song_list_info"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/play_all_frame"
         android:layout_marginBottom="@dimen/common_bottom_height">
     </ListView>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/fragment_container"
+        android:layout_alignParentBottom="true">
+    </FrameLayout>
 </RelativeLayout>

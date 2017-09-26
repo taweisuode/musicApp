@@ -75,7 +75,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         }
         //初始化播放界面
         initView();
-        parseMusic(bundle.getString("songObject"));
+        parseMusic(bundle.getString("song_id"));
 
     }
     private void initView() {
@@ -99,16 +99,13 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
-    private void  parseMusic(final String songObject) {
+    private void  parseMusic(final String songIds) {
         new Thread(){
             @Override
             public void run() {
                 Message msg = new Message();
                 Bundle data = new Bundle();
-                ShowLog.e("songObject=" + songObject);
                 try {
-                    JSONObject jsonObject = new JSONObject(songObject);
-                    String songIds = jsonObject.getString("song_id");
                     String downloadUrl = getResources().getString(R.string.download_url);
                     HashMap<String, String> params = new HashMap<>();
                     //offset 表示:最后一条数据在已加载数据中的位置数

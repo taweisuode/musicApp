@@ -27,4 +27,5 @@
     <color name="book_agreement">#aaaaaa</color>
 
     <color name="main_fragment_text_color">#aaaaaa</color>
+    <color name="play_all_line">#CDC0B0</color>
 </resources>
