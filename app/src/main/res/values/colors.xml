@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="service_date">#3a3b3d</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="topBarText">#18BED7</color>
+    <color name="fontColor">#3A3B3D</color>
+    <color name="selectedFontColor">#18BED7</color>
+    <color name="white">#FFFFFF</color>
+    <color name="red">#FF0000</color>
+    <color name="book_price">#FF7508</color>
+    <color name="window_background">#eeeeee</color>
+    <color name="service_plan_bg">#acdfe7</color>
+
+    <!-- replace huanxin sdk color -->
+    <color name="top_bar_normal_bg">#18BED7</color>
+    <color name="transparent_background">#50000000</color>
+    <color name="password1_background">#f6f6f6</color>
+    <color name="password1_word_color">#3a3b3d</color>
+    <color name="segment_grey">#344250</color>
+    <color name="textColor_selected">#18BED7</color>
+    <color name="textColor_unselectedfontColor">#f6f6f6</color>
+
+    <color name="login_code">#18b1d7</color>
+    <color name="book_hint">#aaaaaa</color>
+    <color name="book_agreement">#aaaaaa</color>
+
+    <color name="main_fragment_text_color">#aaaaaa</color>
+</resources>

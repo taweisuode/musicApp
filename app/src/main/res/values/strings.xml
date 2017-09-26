@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">musicPlayer</string>
+    <string name="title_activity_random_listen_view">RandomListenViewActivity</string>
+    <!-- 首页-->
+    <string name="main_self_recommend">个性推荐</string>
+    <string name="main_rank_list">排行榜</string>
+    <string name="pull_to_refresh">下拉可以刷新</string>
+    <string name="release_to_refresh">释放立即刷新</string>
+    <string name="refreshing">正在刷新…</string>
+    <string name="pull_to_add">上拉可以加载</string>
+    <string name="adding">正在加载…</string>
+
+    <string name="recommend_image_api">http://api.ci92.com/Index/Main/recommendImage</string>
+    <string name="baidu_music_api_root">http://api.ci92.com/Index/Index/list</string>
+    <string name="download_url">http://api.ci92.com/Index/Index/download</string>
+    <string name="recommend_song_show">http://api.ci92.com/Index/Main/recommendSong</string>
+    <string name="recommend_song_list">http://api.ci92.com/Index/Main/recommendSongList</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

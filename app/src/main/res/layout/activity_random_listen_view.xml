@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_random_listen_view2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.pengge.musicplayer.ui.RandomListenViewActivity">
+    <include layout="@layout/app_bar"/>
+    <LinearLayout
+        android:id="@+id/add_fresh_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/top_bar_height">
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/add_load_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/top_bar_height"
+        android:layout_gravity="bottom">
+    </LinearLayout>
+
+    <com.pengge.musicplayer.diyView.MyScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/top_bar_height"
+        android:layout_marginBottom="0dp"
+        android:background="@color/window_background">
+        <LinearLayout
+            android:id="@+id/service_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation = "vertical">
+        </LinearLayout>
+    </com.pengge.musicplayer.diyView.MyScrollView>
+</FrameLayout>

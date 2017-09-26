@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bottom_bar_container"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/bottom_bar_height"
+    android:layout_gravity="bottom"
+    android:background="@null"
+    android:alpha="0.9">
+
+    <LinearLayout
+        android:id="@+id/radio_group_bottom_bar"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="10dp">
+        <ImageView
+            android:id="@+id/play_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/up" />
+
+        <ImageView
+            android:id="@+id/play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/pause" />
+
+        <ImageView
+            android:id="@+id/play_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/down" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+        <TextView
+            android:id="@+id/begin_time"
+            android:text="00:00"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:layout_marginLeft="10dp"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+        <SeekBar
+            android:id="@+id/seek_bar"
+            android:layout_width="0dip"
+            android:layout_weight="5"
+            android:layout_height="match_parent" />
+        <TextView
+            android:gravity="center|right"
+            android:id="@+id/end_time"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:text="00:00"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:layout_width="0dip"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+</FrameLayout>
