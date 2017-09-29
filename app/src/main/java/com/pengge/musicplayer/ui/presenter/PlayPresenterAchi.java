@@ -28,6 +28,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
+import okhttp3.OkHttpClient;
+
 import static com.pengge.musicplayer.dataCenter.dataManage.millersToSecond;
 
 
@@ -183,8 +185,13 @@ public class PlayPresenterAchi implements PlayPresenter,View.OnClickListener{
         }
     }
     @Override
-    public void parseLrc(String lrcLink) {
-        ParseLrc parseLrc = new ParseLrc(lrcLink);
+    public void parseLrc(final String lrcLink) {
+        new Thread(){
+            @Override
+            public void run() {
+                ParseLrc parseLrc = new ParseLrc(lrcLink);
+            }
+        }.start();
     }
     public void stopActivity() {
         if(mp != null){
