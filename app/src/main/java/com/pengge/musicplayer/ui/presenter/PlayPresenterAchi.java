@@ -12,6 +12,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.pengge.musicplayer.R;
+import com.pengge.musicplayer.musicModel.ParseLrc;
 import com.pengge.musicplayer.tools.OKHttpManager;
 import com.pengge.musicplayer.ui.PlayActivity;
 import com.pengge.musicplayer.ui.view.PlayView;
@@ -181,7 +182,10 @@ public class PlayPresenterAchi implements PlayPresenter,View.OnClickListener{
                 break;
         }
     }
-
+    @Override
+    public void parseLrc(String lrcLink) {
+        ParseLrc parseLrc = new ParseLrc(lrcLink);
+    }
     public void stopActivity() {
         if(mp != null){
             mp.stop();

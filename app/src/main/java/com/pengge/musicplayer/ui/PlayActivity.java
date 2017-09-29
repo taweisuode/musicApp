@@ -125,6 +125,8 @@ public class PlayActivity extends AppCompatActivity implements PlayView {
 
             //初始化播放
             playPresenterAchi.initPlay(songDownLoadUrl);
+            //歌词播放
+            playPresenterAchi.parseLrc(lrcLink);
             //parseLrc = new ParseLrc(lrcLink);
         } catch (JSONException e) {
             e.printStackTrace();
