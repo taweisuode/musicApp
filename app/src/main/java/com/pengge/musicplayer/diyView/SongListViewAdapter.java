@@ -25,6 +25,7 @@ import java.util.regex.Matcher;
 
 
 public class SongListViewAdapter extends ArrayAdapter<ListItem> {
+    private final ArrayList<String> songIdArr;
     private Context context;
     private int resource;
     private ArrayList<ListItem> listData = new ArrayList<ListItem>();
@@ -33,6 +34,11 @@ public class SongListViewAdapter extends ArrayAdapter<ListItem> {
         this.resource = resource;
         this.context = context;
         this.listData = list;
+        ArrayList<String> songIdArr = new ArrayList<>();
+        for (int i = 0;i < list.size();i++) {
+            songIdArr.add(list.get(i).getSongId());
+        }
+        this.songIdArr = songIdArr;
     }
     @Override
     public int getCount() {
@@ -82,6 +88,7 @@ public class SongListViewAdapter extends ArrayAdapter<ListItem> {
             public void onClick(View v) {
                 Intent intent = new Intent(context, PlayActivity.class);
                 intent.putExtra("song_id", item.getSongId());
+                intent.putExtra("song_id_arr",songIdArr);
                 context.startActivity(intent);
             }
         });

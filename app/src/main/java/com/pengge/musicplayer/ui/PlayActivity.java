@@ -64,7 +64,7 @@ public class PlayActivity extends AppCompatActivity implements PlayView {
         initView();
 
         //绑定present
-        bindPresent(bundle.getString("song_id"));
+        bindPresent(bundle);
 
     }
     private void initView() {
@@ -75,10 +75,11 @@ public class PlayActivity extends AppCompatActivity implements PlayView {
 
     }
     //绑定presenterAchi
-    private void bindPresent(String songIds) {
+    private void bindPresent(Bundle bundle) {
         playPresenterAchi = new PlayPresenterAchi(this);
         playPresenterAchi.setActivity(this);
-        playPresenterAchi.getSongInfoFromApi(songIds);
+        playPresenterAchi.getSongInfoFromApi(bundle.getString("song_id"));
+        playPresenterAchi.getSongIdList(bundle.getStringArrayList("song_id_arr"));
     }
     private void decorateView(JSONObject songObject) {
         try {
@@ -126,7 +127,7 @@ public class PlayActivity extends AppCompatActivity implements PlayView {
             //初始化播放
             playPresenterAchi.initPlay(songDownLoadUrl);
             //歌词播放
-            playPresenterAchi.parseLrc(lrcLink);
+            //playPresenterAchi.parseLrc(lrcLink);
         } catch (JSONException e) {
             e.printStackTrace();
         }

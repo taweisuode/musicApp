@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.pengge.musicplayer.R;
 import com.pengge.musicplayer.musicModel.ParseLrc;
 import com.pengge.musicplayer.tools.OKHttpManager;
+import com.pengge.musicplayer.tools.ShowLog;
 import com.pengge.musicplayer.ui.PlayActivity;
 import com.pengge.musicplayer.ui.view.PlayView;
 
@@ -23,12 +24,10 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
-
-
-import okhttp3.OkHttpClient;
 
 import static com.pengge.musicplayer.dataCenter.dataManage.millersToSecond;
 
@@ -54,6 +53,9 @@ public class PlayPresenterAchi implements PlayPresenter,View.OnClickListener{
     private static final int GET_SONG_INFO_SUCCESS = 201;
     private static final int GET_SONG_INFO_ERROR = 501;
     private static final int JSON_ERROR = 601;
+    private ArrayList<String> songIdArr;
+    private String currentSongId;
+
     public PlayPresenterAchi(PlayView playView) {
         this.playView = playView;
         safeHandler = new SafeHandler(this);
@@ -77,6 +79,7 @@ public class PlayPresenterAchi implements PlayPresenter,View.OnClickListener{
     }
     @Override
     public void getSongInfoFromApi(final String songIds) {
+        this.currentSongId = songIds;
         new Thread(){
             @Override
             public void run() {
@@ -112,47 +115,57 @@ public class PlayPresenterAchi implements PlayPresenter,View.OnClickListener{
         }.start();
     }
     @Override
+    public void getSongIdList(ArrayList<String> song_id_arr) {
+        this.songIdArr = song_id_arr;
+    }
+    @Override
     public void initPlay(String songDownLoadUrl) {
-        if(mp == null) {
-            mp = new MediaPlayer();
-
-            try {
-                mp.setDataSource(songDownLoadUrl);
-                mp.prepareAsync();
-                mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                    @Override
-                    public void onPrepared(final MediaPlayer mp) {
-                        //计算时间并添加seekbar
-                        int mpTime = mp.getDuration();
-                        seekBar.setMax(mpTime);
-                        endTime.setText(millersToSecond(mpTime));
-                        seekBar.setEnabled(true);
-                        if(isPlaying) {
-                            //----------定时器记录播放进度---------//
-                            mTimer = new Timer();
-                            mTimerTask = new TimerTask() {
-                                @Override
-                                public void run() {
-                                    playActivity.runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            seekBar.setProgress(mp.getCurrentPosition());
-                                            beginTime.setText(millersToSecond(mp.getCurrentPosition()));
-                                        }
-                                    });
-                                }
-                            };
-                            mTimer.schedule(mTimerTask, 0, 10);
-                            seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListenerImp());
-
-                            mp.setLooping(true);
-                            mp.start();
-                        }
+        if(mp != null) {
+            mp.stop();
+            mp.release();
+            mp = null;
+        }
+        mp = new MediaPlayer();
+        try {
+            mp.setDataSource(songDownLoadUrl);
+            mp.prepareAsync();
+            mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(final MediaPlayer mp) {
+                    //计算时间并添加seekbar
+                    int mpTime = mp.getDuration();
+                    seekBar.setMax(mpTime);
+                    endTime.setText(millersToSecond(mpTime));
+                    seekBar.setEnabled(true);
+                    if(isPlaying) {
+                        //----------定时器记录播放进度---------//
+                        mTimer = new Timer();
+                        mTimerTask = new TimerTask() {
+                            @Override
+                            public void run() {
+                                playActivity.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        seekBar.setProgress(mp.getCurrentPosition());
+                                        beginTime.setText(millersToSecond(mp.getCurrentPosition()));
+                                    }
+                                });
+                            }
+                        };
+                        mTimer.schedule(mTimerTask, 0, 10);
+                        seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListenerImp());
+                        mp.start();
                     }
-                });
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+                }
+            });
+            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    calculatePlayMode(2);
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -164,6 +177,7 @@ public class PlayPresenterAchi implements PlayPresenter,View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.play_up:
+                calculatePlayMode(1);
                 break;
             case R.id.play:
                 if(isPlaying) {
@@ -181,24 +195,65 @@ public class PlayPresenterAchi implements PlayPresenter,View.OnClickListener{
                 }
                 break;
             case R.id.play_down:
+                calculatePlayMode(2);
                 break;
         }
     }
+
+
+    private void calculatePlayMode(int n) {
+        mp.seekTo(0);
+        mTimer.cancel();
+        mTimerTask.cancel();
+        String shouldPlaySongId = "";
+        int position = 0;
+        switch (n) {
+            case 1:
+                for (int i = 0;i<songIdArr.size();i++) {
+                    if(songIdArr.get(i) == currentSongId) {
+                        position = i;
+                    }
+                }
+                if(position > 0 ) {
+                    shouldPlaySongId = songIdArr.get(position-1);
+                }else  {
+                    shouldPlaySongId = songIdArr.get(songIdArr.size()-1);
+                }
+                break;
+            case 2:
+                for (int i = 0;i<songIdArr.size();i++) {
+                    if(songIdArr.get(i) == currentSongId) {
+                        position = i;
+                    }
+                }
+                if(position < songIdArr.size() -1) {
+                    shouldPlaySongId = songIdArr.get(position+1);
+                }else  {
+                    shouldPlaySongId = songIdArr.get(0);
+                }
+                break;
+        }
+        getSongInfoFromApi(shouldPlaySongId);
+    }
+
     @Override
     public void parseLrc(final String lrcLink) {
         new Thread(){
             @Override
             public void run() {
-                ParseLrc parseLrc = new ParseLrc(lrcLink);
+                //ParseLrc parseLrc = new ParseLrc(lrcLink);
             }
         }.start();
     }
+
     public void stopActivity() {
         if(mp != null){
             mp.stop();
             mp = null;
         }
     }
+
+
 
     private class OnSeekBarChangeListenerImp implements
             SeekBar.OnSeekBarChangeListener {

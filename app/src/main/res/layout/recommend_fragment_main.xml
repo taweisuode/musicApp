@@ -95,16 +95,7 @@
                     android:text="推荐歌单 >"
                     android:textSize="18sp"
                     android:layout_marginLeft="@dimen/common_recommend_margin"/>
-                <GridView
-                    android:id="@+id/grid_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="310dp"
-                    android:layout_below="@+id/recommend_textview_title1"
-                    android:layout_marginTop="5dp"
-                    android:numColumns="3"
-                    android:gravity="center"
-                    android:verticalSpacing="10dp" >
-                </GridView>
+
                 <TextView
                     android:id="@+id/recommend_textview_title2"
                     android:layout_width="wrap_content"
@@ -113,6 +104,17 @@
                     android:text="推荐专辑 >"
                     android:textSize="18sp"
                     android:layout_marginLeft="@dimen/common_recommend_margin"/>
+
+                <GridView
+                    android:id="@+id/grid_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="310dp"
+                    android:numColumns="3"
+                    android:gravity="center"
+                    android:verticalSpacing="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true">
+                </GridView>
             </RelativeLayout>
         </FrameLayout>
     </ScrollView>

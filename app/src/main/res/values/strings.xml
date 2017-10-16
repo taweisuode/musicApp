@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">musicPlayer</string>
+    <string name="app_name">鹏哥音乐</string>
     <string name="title_activity_random_listen_view">RandomListenViewActivity</string>
     <!-- 首页-->
     <string name="main_self_recommend">个性推荐</string>
